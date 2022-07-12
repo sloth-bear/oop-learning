@@ -16,8 +16,9 @@ public class OrderServiceTest {
 
   @BeforeEach
   public void init() {
-    memberService = AppConfig.memberService();
-    orderService = AppConfig.orderService();
+    final var appConfig = new AppConfig();
+    memberService = appConfig.memberService();
+    orderService = appConfig.orderService();
   }
 
   @Test

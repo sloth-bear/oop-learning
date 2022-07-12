@@ -11,26 +11,22 @@ import spring.core.order.OrderServiceImpl;
 
 public class AppConfig {
 
-  private AppConfig() {
-    throw new UnsupportedOperationException();
-  }
-
-  public static MemberService memberService() {
+  public MemberService memberService() {
     return new MemberServiceImpl(memberRepository());
   }
 
-  public static OrderService orderService() {
+  public OrderService orderService() {
     return new OrderServiceImpl(
         memberRepository(),
         discountPolicy()
     );
   }
 
-  public static MemberRepository memberRepository() {
+  public MemberRepository memberRepository() {
     return new MemoryMemberRepository();
   }
 
-  public static DiscountPolicy discountPolicy() {
+  public DiscountPolicy discountPolicy() {
     return new FixDiscountPolicy();
   }
 
