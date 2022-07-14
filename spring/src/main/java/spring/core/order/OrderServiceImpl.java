@@ -8,7 +8,8 @@ public class OrderServiceImpl implements OrderService {
   private final MemberRepository memberRepository;
   private final DiscountPolicy discountPolicy;
 
-  public OrderServiceImpl(final MemberRepository memberRepository, final DiscountPolicy discountPolicy) {
+  public OrderServiceImpl(final MemberRepository memberRepository,
+      final DiscountPolicy discountPolicy) {
     this.memberRepository = memberRepository;
     this.discountPolicy = discountPolicy;
   }
@@ -22,6 +23,10 @@ public class OrderServiceImpl implements OrderService {
         goodsName,
         goodsPrice,
         discountPolicy.getDiscountAmount(orderedMember, goodsPrice));
+  }
+
+  public MemberRepository getMemberRepository() {
+    return memberRepository;
   }
 
 }
