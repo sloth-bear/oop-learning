@@ -12,18 +12,15 @@ import spring.core.order.OrderService;
 import spring.core.order.OrderServiceImpl;
 
 @Configuration
-@SuppressWarnings("SpringFacetCodeInspection")
 public class AppConfig {
 
   @Bean
   public MemberService memberService() {
-    System.out.println("call memberService");
     return new MemberServiceImpl(memberRepository());
   }
 
   @Bean
   public OrderService orderService() {
-    System.out.println("call orderService");
     return new OrderServiceImpl(
         memberRepository(),
         discountPolicy()
@@ -32,7 +29,6 @@ public class AppConfig {
 
   @Bean
   public MemberRepository memberRepository() {
-    System.out.println("new memberRepository");
     return new MemoryMemberRepository();
   }
 

@@ -2,7 +2,9 @@ package spring.core.member;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MemoryMemberRepository implements MemberRepository {
 
   // 동시성 이슈가 있을 수 있으므로 concurrentHashMap 쓰는 것이 맞다.

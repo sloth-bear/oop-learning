@@ -1,5 +1,8 @@
 package spring.core.member;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService {
 
   private final MemberRepository memberRepository;
@@ -18,7 +21,7 @@ public class MemberServiceImpl implements MemberService {
   public Member find(final Long memberId) {
     return memberRepository.findById(memberId);
   }
-  
+
   public MemberRepository getMemberRepository() {
     return memberRepository;
   }
