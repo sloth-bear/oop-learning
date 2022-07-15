@@ -9,6 +9,7 @@ import spring.core.AutoAppConfig;
 import spring.core.member.MemberRepository;
 import spring.core.member.MemberService;
 import spring.core.member.MemberServiceImpl;
+import spring.core.order.OrderService;
 
 public class AutoAppConfigTest {
 
@@ -17,7 +18,10 @@ public class AutoAppConfigTest {
   @Test
   void basicScan() {
     final var memberService = ac.getBean(MemberService.class);
+    final var orderService = ac.getBean(OrderService.class);
+    
     assertThat(memberService).isInstanceOf(MemberService.class);
+    assertThat(orderService).isInstanceOf(OrderService.class);
   }
 
   @Test
