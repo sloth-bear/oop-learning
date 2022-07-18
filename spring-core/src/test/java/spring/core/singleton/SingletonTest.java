@@ -38,6 +38,7 @@ public class SingletonTest {
   }
 
   @Test
+  @SuppressWarnings("resource")
   @DisplayName("SpringContainer and singleton")
   void springContainer() {
     final var context = new AnnotationConfigApplicationContext(AppConfig.class);
@@ -52,6 +53,7 @@ public class SingletonTest {
   }
 
   @Test
+  @SuppressWarnings("resource")
   @DisplayName("Spring container configuration singleton bean test")
   void configurationSingletonTest() {
     final var context = new AnnotationConfigApplicationContext(AppConfig.class);
@@ -66,6 +68,7 @@ public class SingletonTest {
   }
 
   @Test
+  @SuppressWarnings("resource")
   void configurationCGLIB() {
     final var context = new AnnotationConfigApplicationContext(AppConfig.class);
     final var bean = context.getBean(AppConfig.class);

@@ -11,12 +11,12 @@ import spring.core.singleton.service.StatefulService;
 
 public class StatefulServiceTest {
 
+  private final ApplicationContext ac = new AnnotationConfigApplicationContext(TestConfig.class);
+
   @Test
   @DisplayName("singleton bean이 내부 state를 가지게 되고, 값이 업데이트되는 경우 예기치 않는 상황이 발생한다.")
   void singletonTest() {
     // give
-    final ApplicationContext ac = new AnnotationConfigApplicationContext(TestConfig.class);
-
     final var service1 = ac.getBean(StatefulService.class);
     final var service2 = ac.getBean(StatefulService.class);
 
@@ -24,8 +24,8 @@ public class StatefulServiceTest {
     service1.order("UserA", 10000);
     service2.order("UserB", 20000);
 
-    int price1 = service1.getPrice();
-    int price2 = service2.getPrice();
+    final int price1 = service1.getPrice();
+    final int price2 = service2.getPrice();
 
     // then
     assertThat(price1).isEqualTo(price2);
