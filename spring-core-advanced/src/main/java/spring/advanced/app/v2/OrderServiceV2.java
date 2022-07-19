@@ -4,14 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import spring.advanced.trace.TraceId;
 import spring.advanced.trace.TraceStatus;
-import spring.advanced.trace.log.LogTraceV2;
+import spring.advanced.trace.proto.ProtoLogTraceV2;
 
 @Service
 @RequiredArgsConstructor
 public class OrderServiceV2 {
 
   private final OrderRepositoryV2 orderRepositoryV2;
-  private final LogTraceV2 trace;
+  private final ProtoLogTraceV2 trace;
 
   public void orderItem(final String itemId, final TraceId traceId) {
     TraceStatus status = null;

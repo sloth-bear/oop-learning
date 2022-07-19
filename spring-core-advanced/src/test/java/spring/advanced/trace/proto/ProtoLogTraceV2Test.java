@@ -1,12 +1,12 @@
-package spring.advanced.trace.log;
+package spring.advanced.trace.proto;
 
 import org.junit.jupiter.api.Test;
 
-public class LogTraceV2Test {
+public class ProtoLogTraceV2Test {
 
   @Test
   void trace() {
-    final var trace = new LogTraceV2();
+    final var trace = new ProtoLogTraceV2();
     final var status = trace.begin("Hello?");
     trace.end(status);
   }
@@ -14,7 +14,7 @@ public class LogTraceV2Test {
 
   @Test
   void traceWithPrev() {
-    final var trace = new LogTraceV2();
+    final var trace = new ProtoLogTraceV2();
     final var firstStatus = trace.begin("Hello?");
     final var secondStatus = trace.begin(firstStatus.getTraceId(), "hello2?");
 
@@ -24,14 +24,14 @@ public class LogTraceV2Test {
 
   @Test
   void exception() {
-    final var trace = new LogTraceV2();
+    final var trace = new ProtoLogTraceV2();
     final var status = trace.begin("Hello?");
     trace.exception(status, new IllegalStateException());
   }
 
   @Test
   void beginSyncWithException() {
-    final var trace = new LogTraceV2();
+    final var trace = new ProtoLogTraceV2();
     final var firstStatus = trace.begin("Hello?");
     final var secondStatus = trace.begin(firstStatus.getTraceId(), "hello2?");
 

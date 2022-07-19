@@ -4,14 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import spring.advanced.trace.TraceStatus;
-import spring.advanced.trace.log.LogTraceV2;
+import spring.advanced.trace.proto.ProtoLogTraceV2;
 
 @RestController
 @RequiredArgsConstructor
 public class OrderControllerV2 {
 
   private final OrderServiceV2 orderServiceV2;
-  private final LogTraceV2 trace;
+  private final ProtoLogTraceV2 trace;
 
   @GetMapping("/v2/orders")
   public String getOrderItem(final String itemId) {

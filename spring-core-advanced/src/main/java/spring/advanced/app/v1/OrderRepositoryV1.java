@@ -3,14 +3,14 @@ package spring.advanced.app.v1;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import spring.advanced.trace.TraceStatus;
-import spring.advanced.trace.log.LogTraceV1;
+import spring.advanced.trace.proto.ProtoLogTraceV1;
 
 @Repository
 @RequiredArgsConstructor
 public class OrderRepositoryV1 {
 
   private static final String INVALID_ITEM_ID = "ex";
-  private final LogTraceV1 trace;
+  private final ProtoLogTraceV1 trace;
 
   public void save(final String itemId) {
     TraceStatus status = null;

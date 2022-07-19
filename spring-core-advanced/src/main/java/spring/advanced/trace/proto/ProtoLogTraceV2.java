@@ -1,4 +1,4 @@
-package spring.advanced.trace.log;
+package spring.advanced.trace.proto;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -7,7 +7,7 @@ import spring.advanced.trace.TraceStatus;
 
 @Slf4j
 @Component
-public class LogTraceV1 {
+public class ProtoLogTraceV2 {
 
   private static final String START_PREFIX = "-->";
   private static final String COMPLETE_PREFIX = "<--";
@@ -20,6 +20,15 @@ public class LogTraceV1 {
     log.info("[{}] {}{}", traceId.getId(), addSpace(START_PREFIX, traceId.getLevel()), message);
 
     return new TraceStatus(traceId, startTimeMs, message);
+  }
+
+  public TraceStatus begin(final TraceId prev, final String message) {
+    final var nextTrace = prev.createNextLevel();
+    final var startTimeMs = System.currentTimeMillis();
+
+    log.info("[{}] {}{}", nextTrace.getId(), addSpace(START_PREFIX, nextTrace.getLevel()), message);
+
+    return new TraceStatus(nextTrace, startTimeMs, message);
   }
 
   public void end(final TraceStatus traceStatus) {
@@ -57,6 +66,5 @@ public class LogTraceV1 {
     }
     return sb.toString();
   }
-
 
 }
