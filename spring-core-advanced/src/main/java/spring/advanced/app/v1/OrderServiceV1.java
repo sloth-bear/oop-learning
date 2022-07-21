@@ -3,7 +3,7 @@ package spring.advanced.app.v1;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import spring.advanced.trace.TraceStatus;
-import spring.advanced.trace.proto.ProtoLogTraceV1;
+import spring.advanced.trace.log.proto.ProtoLogTraceV1;
 
 @Service
 @RequiredArgsConstructor

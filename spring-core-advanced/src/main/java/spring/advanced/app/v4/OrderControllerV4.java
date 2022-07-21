@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import spring.advanced.trace.log.LogTrace;
-import spring.advanced.trace.templtae.AbstractTemplate;
+import spring.advanced.trace.log.templtae.AbstractTemplate;
 
 @RestController
 @RequiredArgsConstructor

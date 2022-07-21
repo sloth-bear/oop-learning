@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import spring.advanced.trace.TraceId;
 import spring.advanced.trace.TraceStatus;
-import spring.advanced.trace.proto.ProtoLogTraceV2;
+import spring.advanced.trace.log.proto.ProtoLogTraceV2;
 
 @Repository
 @RequiredArgsConstructor

@@ -1,6 +1,7 @@
 package spring.advanced.trace.proto;
 
 import org.junit.jupiter.api.Test;
+import spring.advanced.trace.log.proto.ProtoLogTraceV2;
 
 public class ProtoLogTraceV2Test {
 
