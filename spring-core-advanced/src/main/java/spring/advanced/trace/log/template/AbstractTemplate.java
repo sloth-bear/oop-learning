@@ -1,4 +1,4 @@
-package spring.advanced.trace.log.templtae;
+package spring.advanced.trace.log.template;
 
 import spring.advanced.trace.TraceStatus;
 import spring.advanced.trace.log.LogTrace;

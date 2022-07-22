@@ -3,7 +3,7 @@ package spring.advanced.app.v4;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import spring.advanced.trace.log.LogTrace;
-import spring.advanced.trace.log.templtae.AbstractTemplate;
+import spring.advanced.trace.log.template.AbstractTemplate;
 
 @Service
 @RequiredArgsConstructor
