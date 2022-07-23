@@ -5,9 +5,9 @@ import org.springframework.context.annotation.Configuration;
 import spring.proxy.app.v2.OrderControllerV2;
 import spring.proxy.app.v2.OrderRepositoryV2;
 import spring.proxy.app.v2.OrderServiceV2;
-import spring.proxy.app.v2.proxy.OrderControllerV2Proxy;
-import spring.proxy.app.v2.proxy.OrderRepositoryV2Proxy;
-import spring.proxy.app.v2.proxy.OrderServiceV2Proxy;
+import spring.proxy.proxy.v2.OrderControllerV2Proxy;
+import spring.proxy.proxy.v2.OrderRepositoryV2Proxy;
+import spring.proxy.proxy.v2.OrderServiceV2Proxy;
 import spring.proxy.trace.logtrace.LogTrace;
 
 @Configuration
