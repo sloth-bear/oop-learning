@@ -13,6 +13,7 @@ public class OrderControllerV1Proxy implements OrderControllerV1 {
   private final LogTrace logTrace;
 
   @Override
+  @SuppressWarnings("DuplicatedCode")
   public String orders(final String itemId) {
     TraceStatus begin = null;
     try {
