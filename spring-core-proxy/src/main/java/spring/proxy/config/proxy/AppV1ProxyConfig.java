@@ -1,4 +1,4 @@
-package spring.proxy.config;
+package spring.proxy.config.proxy;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
