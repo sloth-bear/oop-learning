@@ -14,7 +14,7 @@ import spring.proxy.app.v1.proxy.OrderServiceV1Proxy;
 import spring.proxy.trace.logtrace.LogTrace;
 
 @Configuration
-public class AppV1ProxyConfig {
+public class InterfaceProxyConfig {
 
   @Bean
   public OrderControllerV1 orderControllerV1Proxy(final LogTrace logTrace) {
