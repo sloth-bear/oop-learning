@@ -8,12 +8,13 @@ import spring.proxy.app.v1.OrderRepositoryV1;
 import spring.proxy.app.v1.OrderRepositoryV1Impl;
 import spring.proxy.app.v1.OrderServiceV1;
 import spring.proxy.app.v1.OrderServiceV1Impl;
-import spring.proxy.proxy.v1.OrderControllerV1Proxy;
-import spring.proxy.proxy.v1.OrderRepositoryV1Proxy;
-import spring.proxy.proxy.v1.OrderServiceV1Proxy;
+import spring.proxy.proxy.basic.v1.OrderControllerV1Proxy;
+import spring.proxy.proxy.basic.v1.OrderRepositoryV1Proxy;
+import spring.proxy.proxy.basic.v1.OrderServiceV1Proxy;
 import spring.proxy.trace.logtrace.LogTrace;
 
 @Configuration
+@SuppressWarnings({"SpringJavaInjectionPointsAutowiringInspection", "SpringFacetCodeInspection"})
 public class InterfaceProxyConfig {
 
   @Bean

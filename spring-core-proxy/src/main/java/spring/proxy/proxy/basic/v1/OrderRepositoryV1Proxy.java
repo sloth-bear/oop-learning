@@ -1,4 +1,4 @@
-package spring.proxy.proxy.v1;
+package spring.proxy.proxy.basic.v1;
 
 import lombok.RequiredArgsConstructor;
 import spring.proxy.app.v1.OrderRepositoryV1;
