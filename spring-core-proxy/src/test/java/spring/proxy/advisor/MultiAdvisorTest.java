@@ -19,11 +19,11 @@ public class MultiAdvisorTest {
     // client --> proxy2(advisor2) --> proxy1(advisor1) --> target
     final var target = new ServiceImpl();
     final var proxyFactory = new ProxyFactory(target);
-    proxyFactory.addAdvisor(new DefaultPointcutAdvisor(Pointcut.TRUE, new Advisor1()));
+    proxyFactory.addAdvisor(new DefaultPointcutAdvisor(Pointcut.TRUE, new Advice1()));
 
     final var proxyWrapTarget = (ServiceInterface) proxyFactory.getProxy();
     final var proxyFactory2 = new ProxyFactory(proxyWrapTarget);
-    proxyFactory2.addAdvisor(new DefaultPointcutAdvisor(Pointcut.TRUE, new Advisor2()));
+    proxyFactory2.addAdvisor(new DefaultPointcutAdvisor(Pointcut.TRUE, new Advice2()));
 
     final var proxy = (ServiceInterface) proxyFactory2.getProxy();
     proxy.save();
@@ -36,8 +36,8 @@ public class MultiAdvisorTest {
     // client --> proxy --> advisor2 --> advisor1 --> target
     final var target = new ServiceImpl();
     final var proxyFactory = new ProxyFactory(target);
-    proxyFactory.addAdvisor(new DefaultPointcutAdvisor(Pointcut.TRUE, new Advisor2()));
-    proxyFactory.addAdvisor(new DefaultPointcutAdvisor(Pointcut.TRUE, new Advisor1()));
+    proxyFactory.addAdvisor(new DefaultPointcutAdvisor(Pointcut.TRUE, new Advice2()));
+    proxyFactory.addAdvisor(new DefaultPointcutAdvisor(Pointcut.TRUE, new Advice1()));
 
     final var proxy = (ServiceInterface) proxyFactory.getProxy();
     proxy.save();
@@ -45,7 +45,7 @@ public class MultiAdvisorTest {
   }
 
   @Slf4j
-  static class Advisor1 implements MethodInterceptor {
+  static class Advice1 implements MethodInterceptor {
 
     @Override
     public Object invoke(final MethodInvocation invocation) throws Throwable {
@@ -55,7 +55,7 @@ public class MultiAdvisorTest {
   }
 
   @Slf4j
-  static class Advisor2 implements MethodInterceptor {
+  static class Advice2 implements MethodInterceptor {
 
     @Override
     public Object invoke(final MethodInvocation invocation) throws Throwable {

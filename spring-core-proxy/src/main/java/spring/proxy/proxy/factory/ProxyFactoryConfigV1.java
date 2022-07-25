@@ -13,7 +13,7 @@ import spring.proxy.app.v1.OrderRepositoryV1;
 import spring.proxy.app.v1.OrderRepositoryV1Impl;
 import spring.proxy.app.v1.OrderServiceV1;
 import spring.proxy.app.v1.OrderServiceV1Impl;
-import spring.proxy.proxy.factory.advice.LogTraceAdvisor;
+import spring.proxy.proxy.factory.advice.LogTraceAdvice;
 import spring.proxy.trace.logtrace.LogTrace;
 
 @Slf4j
@@ -57,6 +57,6 @@ public class ProxyFactoryConfigV1 {
     final var pointcut = new NameMatchMethodPointcut();
     pointcut.setMappedNames("orders*", "save*");
 
-    return new DefaultPointcutAdvisor(pointcut, new LogTraceAdvisor(logTrace));
+    return new DefaultPointcutAdvisor(pointcut, new LogTraceAdvice(logTrace));
   }
 }
