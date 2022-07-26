@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 import spring.proxy.config.LogTraceConfig;
-import spring.proxy.config.v4_postprocessor.BeanPostProcessorConfig;
+import spring.proxy.config.v5_autoproxy.AutoProxyConfig;
 
 //@Import({AppV1Config.class, AppV2Config.class})
 //@Import({ConcreteProxyConfig.class, InterfaceProxyConfig.class, LogTraceConfig.class})
@@ -12,7 +12,8 @@ import spring.proxy.config.v4_postprocessor.BeanPostProcessorConfig;
 //@Import({DynamicProxyFilterConfig.class, LogTraceConfig.class})
 //@Import({ProxyFactoryConfigV1.class, LogTraceConfig.class})
 //@Import({ProxyFactoryConfigV2.class, LogTraceConfig.class})
-@Import({BeanPostProcessorConfig.class, LogTraceConfig.class})
+//@Import({BeanPostProcessorConfig.class, LogTraceConfig.class})
+@Import({AutoProxyConfig.class, LogTraceConfig.class})
 @SpringBootApplication(scanBasePackages = "spring.proxy.app") //주의
 public class ProxyApplication {
 
