@@ -1,13 +1,10 @@
-package spring.proxy.config.proxy;
+package spring.proxy.config.v1_basic.v2;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import spring.proxy.app.v2.OrderControllerV2;
 import spring.proxy.app.v2.OrderRepositoryV2;
 import spring.proxy.app.v2.OrderServiceV2;
-import spring.proxy.proxy.basic.v2.OrderControllerV2Proxy;
-import spring.proxy.proxy.basic.v2.OrderRepositoryV2Proxy;
-import spring.proxy.proxy.basic.v2.OrderServiceV2Proxy;
 import spring.proxy.trace.logtrace.LogTrace;
 
 @Configuration

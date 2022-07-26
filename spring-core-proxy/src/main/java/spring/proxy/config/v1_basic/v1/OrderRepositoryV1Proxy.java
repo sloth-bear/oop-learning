@@ -1,25 +1,23 @@
-package spring.proxy.proxy.basic.v1;
+package spring.proxy.config.v1_basic.v1;
 
 import lombok.RequiredArgsConstructor;
-import spring.proxy.app.v1.OrderServiceV1;
+import spring.proxy.app.v1.OrderRepositoryV1;
 import spring.proxy.trace.TraceStatus;
 import spring.proxy.trace.logtrace.LogTrace;
 
-
 @RequiredArgsConstructor
-public class OrderServiceV1Proxy implements OrderServiceV1 {
+public class OrderRepositoryV1Proxy implements OrderRepositoryV1 {
 
-  private final OrderServiceV1 target;
+  private final OrderRepositoryV1 target;
   private final LogTrace logTrace;
 
   @Override
-  @SuppressWarnings("DuplicatedCode")
-  public void saveItem(final String itemId) {
+  public void save(final String itemId) {
     TraceStatus begin = null;
     try {
-      begin = logTrace.begin("OrderService.saveItem()");
+      begin = logTrace.begin("OrderRepository.save()");
 
-      target.saveItem(itemId);
+      target.save(itemId);
 
       logTrace.end(begin);
     } catch (final Exception e) {

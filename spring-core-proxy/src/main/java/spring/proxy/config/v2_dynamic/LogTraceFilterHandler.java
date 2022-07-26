@@ -1,4 +1,4 @@
-package spring.proxy.proxy.dynamic;
+package spring.proxy.config.v2_dynamic;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

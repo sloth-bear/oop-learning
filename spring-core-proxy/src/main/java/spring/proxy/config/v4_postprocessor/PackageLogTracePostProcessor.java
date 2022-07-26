@@ -1,4 +1,4 @@
-package spring.proxy.proxy.postprocessor;
+package spring.proxy.config.v4_postprocessor;
 
 import static org.springframework.util.StringUtils.startsWithIgnoreCase;
 

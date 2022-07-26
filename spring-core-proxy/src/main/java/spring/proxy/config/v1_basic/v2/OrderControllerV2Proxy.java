@@ -1,16 +1,20 @@
-package spring.proxy.proxy.basic.v1;
+package spring.proxy.config.v1_basic.v2;
 
 
-import lombok.RequiredArgsConstructor;
-import spring.proxy.app.v1.OrderControllerV1;
+import spring.proxy.app.v2.OrderControllerV2;
 import spring.proxy.trace.TraceStatus;
 import spring.proxy.trace.logtrace.LogTrace;
 
-@RequiredArgsConstructor
-public class OrderControllerV1Proxy implements OrderControllerV1 {
+public class OrderControllerV2Proxy extends OrderControllerV2 {
 
-  private final OrderControllerV1 target;
+  private final OrderControllerV2 target;
   private final LogTrace logTrace;
+
+  public OrderControllerV2Proxy(final OrderControllerV2 target, final LogTrace logTrace) {
+    super(null);
+    this.target = target;
+    this.logTrace = logTrace;
+  }
 
   @Override
   @SuppressWarnings("DuplicatedCode")

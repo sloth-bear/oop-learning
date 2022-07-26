@@ -1,4 +1,4 @@
-package spring.proxy.proxy.basic.v2;
+package spring.proxy.config.v1_basic.v2;
 
 import spring.proxy.app.v2.OrderRepositoryV2;
 import spring.proxy.trace.TraceStatus;

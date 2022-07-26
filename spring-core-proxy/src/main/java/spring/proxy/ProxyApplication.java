@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Import;
 import spring.proxy.config.LogTraceConfig;
-import spring.proxy.proxy.postprocessor.BeanPostProcessorConfig;
+import spring.proxy.config.v4_postprocessor.BeanPostProcessorConfig;
 
 //@Import({AppV1Config.class, AppV2Config.class})
 //@Import({ConcreteProxyConfig.class, InterfaceProxyConfig.class, LogTraceConfig.class})

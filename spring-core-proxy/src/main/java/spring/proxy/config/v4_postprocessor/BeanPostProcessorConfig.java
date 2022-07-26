@@ -1,4 +1,4 @@
-package spring.proxy.proxy.postprocessor;
+package spring.proxy.config.v4_postprocessor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.Advisor;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import spring.proxy.config.AppV1Config;
 import spring.proxy.config.AppV2Config;
-import spring.proxy.proxy.factory.advice.LogTraceAdvice;
+import spring.proxy.config.v3_factory.advice.LogTraceAdvice;
 import spring.proxy.trace.logtrace.LogTrace;
 
 @Slf4j

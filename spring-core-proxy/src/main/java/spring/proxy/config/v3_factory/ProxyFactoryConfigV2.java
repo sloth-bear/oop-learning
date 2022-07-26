@@ -1,4 +1,4 @@
-package spring.proxy.proxy.factory;
+package spring.proxy.config.v3_factory;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.Advisor;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import spring.proxy.app.v2.OrderControllerV2;
 import spring.proxy.app.v2.OrderRepositoryV2;
 import spring.proxy.app.v2.OrderServiceV2;
-import spring.proxy.proxy.factory.advice.LogTraceAdvice;
+import spring.proxy.config.v3_factory.advice.LogTraceAdvice;
 import spring.proxy.trace.logtrace.LogTrace;
 
 @Slf4j

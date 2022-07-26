@@ -1,29 +1,28 @@
-package spring.proxy.proxy.dynamic;
+package spring.proxy.config.v3_factory.advice;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
+import org.aopalliance.intercept.MethodInterceptor;
+import org.aopalliance.intercept.MethodInvocation;
 import spring.proxy.trace.TraceStatus;
 import spring.proxy.trace.logtrace.LogTrace;
 
-public class LogTraceHandler implements InvocationHandler {
+public class LogTraceAdvice implements MethodInterceptor {
 
-  private final Object target;
   private final LogTrace logTrace;
 
-  public LogTraceHandler(final Object target, final LogTrace logTrace) {
-    this.target = target;
+  public LogTraceAdvice(final LogTrace logTrace) {
     this.logTrace = logTrace;
+
   }
 
   @Override
-  public Object invoke(final Object proxy, final Method method, final Object[] args)
-      throws Throwable {
+  public Object invoke(final MethodInvocation invocation) throws Throwable {
     TraceStatus begin = null;
     try {
+      final var method = invocation.getMethod();
       begin = logTrace.begin(
           method.getDeclaringClass().getSimpleName() + "." + method.getName() + "()");
 
-      final var result = method.invoke(target, args);
+      final var result = invocation.proceed();
 
       logTrace.end(begin);
       return result;
