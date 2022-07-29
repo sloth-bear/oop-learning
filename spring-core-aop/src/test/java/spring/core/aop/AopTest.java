@@ -9,11 +9,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import spring.core.aop.order.OrderRepository;
 import spring.core.aop.order.OrderService;
-import spring.core.aop.order.aop.AspectV1;
+import spring.core.aop.order.aop.AspectV2;
 
 @Slf4j
 @SpringBootTest
-@Import(AspectV1.class)
+//@Import(AspectV1.class)
+@Import(AspectV2.class)
 public class AopTest {
 
   @Autowired
