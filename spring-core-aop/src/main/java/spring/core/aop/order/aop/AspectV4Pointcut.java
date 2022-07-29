@@ -4,21 +4,21 @@ import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
 
 @Slf4j
 @Aspect
-public class AspectV3 {
+public class AspectV4Pointcut {
 
 
-  @Around("allOrder()")
+  @Around("spring.core.aop.order.aop.PointCut.allOrder()")
   public Object doLog(final ProceedingJoinPoint joinPoint) throws Throwable {
     log.info("[LOG] {}", joinPoint.getSignature());
 
     return joinPoint.proceed();
   }
 
-  @Around("allOrder() && allService()")
+  @SuppressWarnings("DuplicatedCode")
+  @Around("spring.core.aop.order.aop.PointCut.allOrderAndService()")
   public Object doTransaction(final ProceedingJoinPoint joinPoint) throws Throwable {
     try {
       log.info("[트랜잭션 시작] {}", joinPoint.getSignature());
@@ -33,14 +33,6 @@ public class AspectV3 {
     } finally {
       log.info("[리소스 릴리즈] {}", joinPoint.getSignature());
     }
-  }
-
-  @Pointcut("execution(* spring.core.aop.order..*(..))")
-  private void allOrder() {
-  }
-
-  @Pointcut("execution(* *..*Service.*(..))")
-  private void allService() {
   }
 
 }
