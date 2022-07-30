@@ -1,4 +1,4 @@
-package spring.core.aop.pointcut.within;
+package spring.core.aop.pointcut;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
