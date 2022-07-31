@@ -82,5 +82,14 @@ public class ParameterTest {
       log.info("[@annotationArgs] {} annotationValue={}", joinPoint.getSignature(),
           annotation.value());
     }
+
+    /**
+     * method 선언부에 선언한 MethodAop 패키지와 타입을 보고 자동으로 매칭되므로 패키지 정보는 따로 입력해줄 필요가 없다.
+     */
+    @Before("@annotation(annotation)")
+    public void atAnnotationAutoArgs(final JoinPoint joinPoint, final MethodAop annotation) {
+      log.info("[@atAnnotationAutoArgs] {} annotationValue={}", joinPoint.getSignature(),
+          annotation.value());
+    }
   }
 }
