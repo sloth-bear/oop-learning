@@ -1,4 +1,4 @@
-public class Main {
+public class TotalCounter {
 
   public static void main(String[] args) {
     System.out.println("Main.main");
