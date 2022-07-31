@@ -11,15 +11,15 @@ import spring.core.aop.internalcall.aop.CallLogAspect;
 @Slf4j
 @SpringBootTest
 @Import(CallLogAspect.class)
-class CallServiceV2Test {
+class CallServiceV3Test {
 
   @Autowired
-  CallServiceV2Lazy callServiceV2;
+  CallServiceV3External callServiceV3;
 
   @Test
-  @DisplayName("target class - 자기 메서드 호출 대신 자기를 주입 받고, 생성자 주입을 사용하기 위해 bean 지연 조회")
+  @DisplayName("target class - 자기 메서드 호출 대신 구조 분리")
   void callServiceAopTest() {
-    callServiceV2.external();
+    callServiceV3.external();
   }
 
 }
