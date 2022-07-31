@@ -2,7 +2,8 @@ package processor;
 
 import java.time.Month;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
+import java.util.function.Predicate;
 import parser.BankTransaction;
 
 public class BankStatementProcessor {
@@ -19,11 +20,19 @@ public class BankStatementProcessor {
         .sum();
   }
 
-  public List<BankTransaction> calculateTotalAmount(
+  public double calculateTotalInMonth(
       final Month month) {
-    return transactions.stream()
-        .filter(t -> t.getDate().getMonth() == month)
-        .collect(Collectors.toList());
+    return calculateTotalAmount(t -> t.getDate().getMonth() == month);
   }
 
+  public double calculateTotalForCategory(final String category) {
+    return calculateTotalAmount(t -> Objects.equals(category, t.getDescription()));
+  }
+
+  public double calculateTotalAmount(final Predicate<BankTransaction> predicate) {
+    return transactions.stream()
+        .filter(predicate)
+        .mapToDouble(BankTransaction::getAmount)
+        .sum();
+  }
 }

@@ -5,22 +5,24 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BankStatementCSVParser {
+public class BankStatementCSVParser implements BankStatementParser {
 
   private static final String RESOURCES = "src/main/resources/transaction/";
   private static final DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-  public List<BankTransaction> parseLinesFromCSV(final List<String> lines) {
+  @Override
+  public List<BankTransaction> parseLinesFrom(final List<String> lines) {
     final var result = new ArrayList<BankTransaction>();
 
     for (final var line : lines) {
-      result.add(parseFromCSV(line));
+      result.add(parseFrom(line));
     }
 
     return result;
   }
 
-  private BankTransaction parseFromCSV(final String line) {
+  @Override
+  public BankTransaction parseFrom(final String line) {
     final var columns = line.split(",");
 
     final var date = LocalDate.parse(columns[0], DATE_PATTERN);
