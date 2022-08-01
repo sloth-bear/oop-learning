@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BankStatementCSVParser implements BankStatementParser {
-
-  private static final String RESOURCES = "src/main/resources/transaction/";
   private static final DateTimeFormatter DATE_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
   @Override
