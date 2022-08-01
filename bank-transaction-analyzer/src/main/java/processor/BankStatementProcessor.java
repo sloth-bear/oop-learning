@@ -1,6 +1,8 @@
 package processor;
 
+import java.time.LocalDate;
 import java.time.Month;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -35,4 +37,21 @@ public class BankStatementProcessor {
         .mapToDouble(BankTransaction::getAmount)
         .sum();
   }
+
+  public BankTransaction findMaxAmount(final LocalDate startDate, final LocalDate endDate) {
+    return transactions.stream()
+        .filter(t -> t.getDate().isEqual(startDate) || t.getDate().isAfter(startDate))
+        .filter(t -> t.getDate().isEqual(endDate) || t.getDate().isBefore(endDate))
+        .max(Comparator.comparing(BankTransaction::getAmount))
+        .orElseThrow(IllegalStateException::new);
+  }
+
+  public BankTransaction findMinAmount(final LocalDate startDate, final LocalDate endDate) {
+    return transactions.stream()
+        .filter(t -> t.getDate().isEqual(startDate) || t.getDate().isAfter(startDate))
+        .filter(t -> t.getDate().isEqual(endDate) || t.getDate().isBefore(endDate))
+        .min(Comparator.comparing(BankTransaction::getAmount))
+        .orElseThrow(IllegalStateException::new);
+  }
+
 }
