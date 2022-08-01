@@ -5,6 +5,11 @@
 - Loose coupling
 - High cohesion
 
+## Usages
+### Test coverage
+```
+./gradlew clean test jacocoTestReport && open "build/jacocoHtml/index.html"
+```
 
 ## 요구사항
 매달 은행에서 받는 입출금 내역으로 소비 내역을 자동으로 요약해주는 프로그램을 작성한다.
