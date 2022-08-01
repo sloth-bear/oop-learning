@@ -1,5 +1,7 @@
 package processor;
 
+import static java.util.stream.Collectors.toList;
+
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Comparator;
@@ -52,6 +54,14 @@ public class BankStatementProcessor {
         .filter(t -> t.getDate().isEqual(endDate) || t.getDate().isBefore(endDate))
         .min(Comparator.comparing(BankTransaction::getAmount))
         .orElseThrow(IllegalStateException::new);
+  }
+
+  public List<BankTransaction> findByAmountGreaterThanEqual(final int amount) {
+    return transactions.stream().filter(t -> t.getAmount() >= amount).collect(toList());
+  }
+
+  public List<BankTransaction> findByMonth(final Month month) {
+    return transactions.stream().filter(t -> t.getDate().getMonth() == month).collect(toList());
   }
 
 }
