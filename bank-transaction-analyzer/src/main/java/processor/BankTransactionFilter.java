@@ -1,6 +1,6 @@
 package processor;
 
-import parser.BankTransaction;
+import domain.BankTransaction;
 
 @FunctionalInterface
 public interface BankTransactionFilter {

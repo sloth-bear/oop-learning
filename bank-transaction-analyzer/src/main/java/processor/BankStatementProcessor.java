@@ -2,12 +2,12 @@ package processor;
 
 import static java.util.stream.Collectors.toList;
 
+import domain.BankTransaction;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
-import parser.BankTransaction;
 
 public class BankStatementProcessor {
 

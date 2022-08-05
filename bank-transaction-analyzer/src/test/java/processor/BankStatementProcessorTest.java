@@ -2,11 +2,11 @@ package processor;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.BankTransaction;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import parser.BankTransaction;
 
 class BankStatementProcessorTest {
 

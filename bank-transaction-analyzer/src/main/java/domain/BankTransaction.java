@@ -1,4 +1,4 @@
-package parser;
+package domain;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -16,7 +16,7 @@ public class BankTransaction {
     this.amount = amount;
     this.description = description;
   }
-  
+
   public LocalDate getDate() {
     return date;
   }

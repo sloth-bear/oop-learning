@@ -1,8 +1,8 @@
 package parser;
 
-import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import domain.BankTransaction;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
@@ -56,7 +56,6 @@ class BankStatementCSVParserTest {
     // given
     final var csvLine1 = "30-01-2022,-100000,Deliveroo";
     final var csvLine2 = "02-02-2022,2000000,Royalties";
-
 
     // when
     final var result1 = parser.parseFrom(csvLine1);
