@@ -16,7 +16,7 @@ public class BankTransaction {
     this.amount = amount;
     this.description = description;
   }
-
+  
   public LocalDate getDate() {
     return date;
   }
@@ -55,4 +55,5 @@ public class BankTransaction {
   public int hashCode() {
     return Objects.hash(date, amount, description);
   }
+
 }
