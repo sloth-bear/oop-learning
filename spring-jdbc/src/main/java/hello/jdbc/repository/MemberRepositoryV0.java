@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.NoSuchElementException;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -15,8 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MemberRepositoryV0 {
 
-  @SuppressWarnings("UnusedReturnValue")
-  public Member save(final Member member) {
+  public Member insert(final Member member) {
     final var sql = "INSERT INTO member(id, money) VALUES (?, ?)";
 
     Connection conn = null;
@@ -29,6 +29,78 @@ public class MemberRepositoryV0 {
       pstmt.setInt(2, member.getMoney());
       pstmt.executeUpdate();
       return member;
+    } catch (final SQLException e) {
+      log.error("db error", e);
+      throw new RuntimeException(e);
+    } finally {
+      close(conn, pstmt, null);
+    }
+  }
+
+  public Member findById(final String id) {
+    final var sql = "SELECT * FROM member WHERE id = ?";
+
+    Connection conn = null;
+    PreparedStatement pstmt = null;
+    ResultSet rs = null;
+
+    try {
+      conn = getConnection();
+      pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, id);
+
+      rs = pstmt.executeQuery();
+
+      if (rs.next()) {
+        final var member = new Member();
+        member.setId(rs.getString("id"));
+        member.setMoney(rs.getInt("money"));
+        return member;
+      }
+      throw new NoSuchElementException("member not found, id = " + id);
+    } catch (final SQLException e) {
+      log.error("db error", e);
+      throw new RuntimeException(e);
+    } finally {
+      close(conn, pstmt, rs);
+    }
+  }
+
+  @SuppressWarnings("UnusedReturnValue")
+  public Member update(final String id, final Member member) {
+    final var sql = "UPDATE member SET money= ? WHERE id = ?";
+
+    Connection conn = null;
+    PreparedStatement pstmt = null;
+
+    try {
+      conn = getConnection();
+      pstmt = conn.prepareStatement(sql);
+      pstmt.setInt(1, member.getMoney());
+      pstmt.setString(2, id);
+      final int resultSize = pstmt.executeUpdate();
+      log.info("result size = {}", resultSize);
+      return member;
+    } catch (final SQLException e) {
+      log.error("db error", e);
+      throw new RuntimeException(e);
+    } finally {
+      close(conn, pstmt, null);
+    }
+  }
+
+  public void deleteById(final String id) {
+    final var sql = "DELETE FROM member WHERE id = ?";
+
+    Connection conn = null;
+    PreparedStatement pstmt = null;
+
+    try {
+      conn = getConnection();
+      pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, id);
+      final int resultSize = pstmt.executeUpdate();
+      log.info("result size = {}", resultSize);
     } catch (final SQLException e) {
       log.error("db error", e);
       throw new RuntimeException(e);

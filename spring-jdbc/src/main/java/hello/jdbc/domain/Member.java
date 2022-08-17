@@ -15,4 +15,5 @@ public class Member {
     this.id = id;
     this.money = money;
   }
+
 }
