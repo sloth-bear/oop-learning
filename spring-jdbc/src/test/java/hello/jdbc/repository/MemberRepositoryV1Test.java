@@ -43,7 +43,7 @@ class MemberRepositoryV1Test {
 
     // update
     final var memberForUpdate = new Member(savedMember.getId(), 20000);
-    repository.update(savedMember.getId(), memberForUpdate);
+    repository.update(savedMember.getId(), memberForUpdate.getMoney());
     final var updatedMember = repository.findById(savedMember.getId());
     assertThat(updatedMember).isNotNull();
     assertThat(updatedMember).isEqualTo(memberForUpdate);

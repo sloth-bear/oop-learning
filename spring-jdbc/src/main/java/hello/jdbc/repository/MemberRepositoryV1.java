@@ -78,7 +78,7 @@ public class MemberRepositoryV1 {
   }
 
   @SuppressWarnings("UnusedReturnValue")
-  public Member update(final String id, final Member member) {
+  public Member update(final String id, final int money) {
     final var sql = "UPDATE member SET money= ? WHERE id = ?";
 
     Connection conn = null;
@@ -87,11 +87,11 @@ public class MemberRepositoryV1 {
     try {
       conn = getConnection();
       pstmt = conn.prepareStatement(sql);
-      pstmt.setInt(1, member.getMoney());
+      pstmt.setInt(1, money);
       pstmt.setString(2, id);
       final int resultSize = pstmt.executeUpdate();
       log.info("result size = {}", resultSize);
-      return member;
+      return new Member(id, money);
     } catch (final SQLException e) {
       log.error("db error", e);
       throw new RuntimeException(e);
