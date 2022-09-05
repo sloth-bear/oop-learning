@@ -28,7 +28,7 @@ public class MemberRepositoryV3 {
     this.dataSource = dataSource;
   }
 
-  public Member findById(final String id) {
+  public Member findById(final String id) throws SQLException {
     final var sql = "SELECT * FROM member WHERE id = ?";
 
     Connection conn = null;
@@ -51,13 +51,13 @@ public class MemberRepositoryV3 {
       throw new NoSuchElementException("member not found, id = " + id);
     } catch (final SQLException e) {
       log.error("db error", e);
-      throw new RuntimeException(e);
+      throw e;
     } finally {
       close(conn, pstmt, rs);
     }
   }
 
-  public Member insert(final Member member) {
+  public Member insert(final Member member) throws SQLException {
     final var sql = "INSERT INTO member(id, money) VALUES (?, ?)";
 
     Connection conn = null;
@@ -72,14 +72,14 @@ public class MemberRepositoryV3 {
       return member;
     } catch (final SQLException e) {
       log.error("db error", e);
-      throw new RuntimeException(e);
+      throw e;
     } finally {
       close(conn, pstmt, null);
     }
   }
 
   @SuppressWarnings("UnusedReturnValue")
-  public Member update(final String id, final int money) {
+  public Member update(final String id, final int money) throws SQLException {
     final var sql = "UPDATE member SET money= ? WHERE id = ?";
 
     Connection conn = null;
@@ -95,13 +95,13 @@ public class MemberRepositoryV3 {
       return new Member(id, money);
     } catch (final SQLException e) {
       log.error("db error", e);
-      throw new RuntimeException(e);
+      throw e;
     } finally {
       close(conn, pstmt, null);
     }
   }
 
-  public void deleteById(final String id) {
+  public void deleteById(final String id) throws SQLException {
     final var sql = "DELETE FROM member WHERE id = ?";
 
     Connection conn = null;
@@ -115,7 +115,7 @@ public class MemberRepositoryV3 {
       log.info("result size = {}", resultSize);
     } catch (final SQLException e) {
       log.error("db error", e);
-      throw new RuntimeException(e);
+      throw e;
     } finally {
       close(conn, pstmt, null);
     }

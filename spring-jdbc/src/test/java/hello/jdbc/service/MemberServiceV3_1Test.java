@@ -8,6 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import hello.jdbc.domain.Member;
 import hello.jdbc.repository.MemberRepositoryV3;
+import java.sql.SQLException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,6 +22,7 @@ import org.springframework.transaction.PlatformTransactionManager;
  * Transaction 구현을 위해 connection 파라미터 전달 방식으로 동기화한다.
  */
 @Slf4j
+@SuppressWarnings("NewClassNamingConvention")
 class MemberServiceV3_1Test {
 
   private static final String MEMBER_A = "memberA";
@@ -43,7 +45,7 @@ class MemberServiceV3_1Test {
   }
 
   @AfterEach
-  void teardown() {
+  void teardown() throws SQLException {
     memberRepository.deleteById(MEMBER_A);
     memberRepository.deleteById(MEMBER_B);
     memberRepository.deleteById(FAIL_MEMBER);
@@ -51,7 +53,7 @@ class MemberServiceV3_1Test {
 
   @Test
   @DisplayName("입금할 대상에게 해당하는 금액 만큼 정상적으로 이체된다.")
-  void transfer_account() {
+  void transfer_account() throws SQLException {
     //given
     final var memberA = new Member(MEMBER_A, 10000);
     final var memberB = new Member(MEMBER_B, 10000);
@@ -73,7 +75,7 @@ class MemberServiceV3_1Test {
 
   @Test
   @DisplayName("입금할 대상에게 해당하는 금액 만큼 이체하는 중 예외가 발생할 경우 정상적으로 롤백된다.")
-  void should_thrown_when_transfer_account() {
+  void should_thrown_when_transfer_account() throws SQLException {
     //given
     final var memberA = new Member(MEMBER_A, 10000);
     final var failMember = new Member(FAIL_MEMBER, 10000);

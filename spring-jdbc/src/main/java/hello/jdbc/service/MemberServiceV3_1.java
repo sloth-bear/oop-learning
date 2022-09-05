@@ -2,6 +2,7 @@ package hello.jdbc.service;
 
 import hello.jdbc.domain.Member;
 import hello.jdbc.repository.MemberRepositoryV3;
+import java.sql.SQLException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -29,7 +30,8 @@ public class MemberServiceV3_1 {
     }
   }
 
-  private void doBusinessLogic(final String fromId, final String toId, final int money) {
+  private void doBusinessLogic(final String fromId, final String toId, final int money)
+      throws SQLException {
     final var fromMember = memberRepository.findById(fromId);
     final var toMember = memberRepository.findById(toId);
 

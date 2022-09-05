@@ -2,6 +2,7 @@ package hello.jdbc.service;
 
 import hello.jdbc.domain.Member;
 import hello.jdbc.repository.MemberRepositoryV3;
+import java.sql.SQLException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -23,10 +24,17 @@ public class MemberServiceV3_2 {
   }
 
   public void transferAccount(final String fromId, final String toId, final int money) {
-    txTemplate.executeWithoutResult(status -> doBusinessLogic(fromId, toId, money));
+    txTemplate.executeWithoutResult(status -> {
+      try {
+        doBusinessLogic(fromId, toId, money);
+      } catch (final SQLException e) {
+        throw new RuntimeException(e);
+      }
+    });
   }
 
-  private void doBusinessLogic(final String fromId, final String toId, final int money) {
+  private void doBusinessLogic(final String fromId, final String toId, final int money)
+      throws SQLException {
     final var fromMember = memberRepository.findById(fromId);
     final var toMember = memberRepository.findById(toId);
 
