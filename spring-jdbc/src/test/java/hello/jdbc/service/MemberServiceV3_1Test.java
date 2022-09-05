@@ -7,35 +7,39 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import hello.jdbc.domain.Member;
-import hello.jdbc.repository.MemberRepositoryV2;
-import java.sql.SQLException;
+import hello.jdbc.repository.MemberRepositoryV3;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.PlatformTransactionManager;
 
 /**
  * Transaction 구현을 위해 connection 파라미터 전달 방식으로 동기화한다.
  */
 @Slf4j
-class MemberServiceV2Test {
+class MemberServiceV3_1Test {
 
   private static final String MEMBER_A = "memberA";
   private static final String MEMBER_B = "memberB";
   private static final String FAIL_MEMBER = "failMember";
 
-  private MemberRepositoryV2 memberRepository;
-  private MemberServiceV2 memberService;
+  private MemberRepositoryV3 memberRepository;
+  private MemberServiceV3_1 memberService;
 
   @BeforeEach
   void setup() {
     final DriverManagerDataSource datasource = new DriverManagerDataSource(URL, USERNAME,
         PASSWORD);
 
-    memberRepository = new MemberRepositoryV2(datasource);
-    memberService = new MemberServiceV2(datasource, memberRepository);
+    memberRepository = new MemberRepositoryV3(datasource);
+
+    final PlatformTransactionManager transactionManager = new DataSourceTransactionManager(
+        datasource);
+    memberService = new MemberServiceV3_1(transactionManager, memberRepository);
   }
 
   @AfterEach
@@ -47,7 +51,7 @@ class MemberServiceV2Test {
 
   @Test
   @DisplayName("입금할 대상에게 해당하는 금액 만큼 정상적으로 이체된다.")
-  void transfer_account() throws SQLException {
+  void transfer_account() {
     //given
     final var memberA = new Member(MEMBER_A, 10000);
     final var memberB = new Member(MEMBER_B, 10000);
