@@ -19,7 +19,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
 
 /**
- * Transaction 구현을 위해 connection 파라미터 전달 방식으로 동기화한다.
+ * Transaction 구현을 위해 Transaction manager를 직접 사용한다.
  */
 @Slf4j
 @SuppressWarnings("NewClassNamingConvention")
