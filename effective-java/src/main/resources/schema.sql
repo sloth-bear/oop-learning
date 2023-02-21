@@ -1,5 +1,5 @@
-drop table if exists budget_category;
 drop table if exists budget;
+drop table if exists budget_category;
 
 create table budget_category
 (

@@ -19,7 +19,7 @@ public class BudgetController {
   private final BudgetService budgetService;
 
   @PostMapping
-  public ResponseEntity<Void> insert(@Valid @RequestBody final BudgetInsertRequest request) {
+  public ResponseEntity<Void> insert(@RequestBody @Valid final BudgetInsertRequest request) {
     final var inserted = budgetService.insert(request);
     return ResponseEntities.created(inserted.getSeq());
   }

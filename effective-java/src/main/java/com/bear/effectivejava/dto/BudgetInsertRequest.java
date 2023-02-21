@@ -1,5 +1,6 @@
 package com.bear.effectivejava.dto;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,6 +27,7 @@ public class BudgetInsertRequest {
   @Size(min = 1, max = 100)
   private String content;
 
+  @Max(Integer.MAX_VALUE)
   private int amount;
 
   private String etc;

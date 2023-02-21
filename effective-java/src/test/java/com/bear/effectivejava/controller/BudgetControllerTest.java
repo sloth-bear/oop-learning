@@ -1,12 +1,15 @@
 package com.bear.effectivejava.controller;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.bear.effectivejava.dto.BudgetInsertRequest;
+import com.bear.effectivejava.controller.builder.BudgetInsertRequestBuilders;
 import com.bear.effectivejava.entity.BudgetEntity;
 import com.bear.effectivejava.service.BudgetService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,12 +42,7 @@ class BudgetControllerTest {
 
   @Test
   void givenValidRequest_whenPostingBudget_thenCreatedResponse() throws Exception {
-    final var request = BudgetInsertRequest.builder()
-        .budgetCategorySeq(1L)
-        .institution("TEST")
-        .content("TEST")
-        .amount(10000)
-        .build();
+    final var request = BudgetInsertRequestBuilders.newFilledRequest().build();
 
     final var savedEntity = BudgetEntity.builder().seq(999L).build();
     doReturn(savedEntity).when(budgetService).insert(request);
@@ -59,5 +57,26 @@ class BudgetControllerTest {
             header().string(HttpHeaders.LOCATION,
                 Matchers.endsWith(PATH + "/" + savedEntity.getSeq())))
         .andDo(print());
+  }
+
+  @Test
+  void givenInvalidRequest_whenPostingBudget_thenCreatedResponse() throws Exception {
+    final var request = BudgetInsertRequestBuilders.newFilledRequest()
+        .institution(null)
+        .budgetCategorySeq(null)
+        .content(null)
+        .build();
+
+    mockMvc.perform(
+            post(PATH)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+        .andExpect(status().isBadRequest())
+        .andExpect(
+            header().doesNotExist(HttpHeaders.LOCATION))
+        .andDo(print());
+
+    verify(budgetService, times(0)).insert(any());
   }
 }
