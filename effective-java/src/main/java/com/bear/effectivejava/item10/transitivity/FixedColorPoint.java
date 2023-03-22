@@ -12,6 +12,7 @@ public class FixedColorPoint extends Point {
 
     /**
      * 대칭성을 만족하도록 수정하였지만 전이성을 위배하게 된다.
+     * 더불어서 Point를 상속 받는 다른 클래스와 equals 비교를 하게 된다면 StackoverflowError가 발생한다.
      */
     @Override
     public boolean equals(Object o) {
