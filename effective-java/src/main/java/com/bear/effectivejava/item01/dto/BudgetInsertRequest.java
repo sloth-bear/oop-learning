@@ -1,4 +1,4 @@
-package com.bear.effectivejava.dto;
+package com.bear.effectivejava.item01.dto;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;

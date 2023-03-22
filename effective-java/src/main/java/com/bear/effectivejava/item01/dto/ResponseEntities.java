@@ -1,4 +1,4 @@
-package com.bear.effectivejava.dto;
+package com.bear.effectivejava.item01.dto;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;

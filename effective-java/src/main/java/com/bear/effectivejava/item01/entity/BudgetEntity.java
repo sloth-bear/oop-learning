@@ -1,6 +1,6 @@
-package com.bear.effectivejava.entity;
+package com.bear.effectivejava.item01.entity;
 
-import com.bear.effectivejava.dto.BudgetInsertRequest;
+import com.bear.effectivejava.item01.dto.BudgetInsertRequest;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;

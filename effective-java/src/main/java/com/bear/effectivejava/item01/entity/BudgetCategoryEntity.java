@@ -1,4 +1,4 @@
-package com.bear.effectivejava.entity;
+package com.bear.effectivejava.item01.entity;
 
 public class BudgetCategoryEntity {
 

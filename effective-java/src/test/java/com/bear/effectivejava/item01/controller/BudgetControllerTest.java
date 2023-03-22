@@ -10,8 +10,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.bear.effectivejava.controller.builder.BudgetInsertRequestBuilders;
-import com.bear.effectivejava.entity.BudgetEntity;
-import com.bear.effectivejava.service.BudgetService;
+import com.bear.effectivejava.item01.controller.BudgetController;
+import com.bear.effectivejava.item01.entity.BudgetEntity;
+import com.bear.effectivejava.item01.service.BudgetService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
